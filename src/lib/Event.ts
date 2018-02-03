@@ -1,4 +1,4 @@
 export declare class Event {
-    event: string;
-    handle(info): void;
+    public event: string;
+    public handle(info): void;
 }

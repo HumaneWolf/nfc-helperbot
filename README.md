@@ -17,6 +17,8 @@ To give feedback, open the [issues page](https://github.com/HumaneWolf/nfc-helpe
 
 To contribute, you will need [Node.JS v9.5.0](https://nodejs.org/en/) and [TypeScript](https://www.typescriptlang.org/) installed. You can then fork or clone the repository, use `npm install` to install dependencies, and you're ready to go. You can get a Bot Token for Telegram by messaging [BotFather](https://telegram.me/BotFather).
 
+All contributions must follow and pass the tslint tests, which can be run using `npm run tslint` in the root folder.
+
 ## Licence
 
 Licenced under a MIT License. See the LICENCE file.

@@ -1,13 +1,13 @@
 import { App } from "../lib/App";
-import { Event } from '../lib/Event';
+import { Event } from "../lib/Event";
 
 export class QuestionAskedEvent implements Event {
-    event: string = 'text';
+    public event: string = "text";
 
-    handle(info: any): void {
-        if (info.update.message.chat.type != 'private') return;
+    public handle(info: any): void {
+        if (info.update.message.chat.type !== "private") { return; }
 
-        let answer = App.getInstance().ask(info.update.message.text);
+        const answer = App.getInstance().ask(info.update.message.text);
 
         info.reply(answer);
     }
