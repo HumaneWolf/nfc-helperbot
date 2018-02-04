@@ -1,6 +1,6 @@
 import { readdir, readdirSync } from "fs";
 import { join } from "path";
-import * as Telegraf from "Telegraf";
+import * as Telegraf from "telegraf";
 import { App } from "./lib/App";
 
 import * as log from "fancy-log";

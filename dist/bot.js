@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
 const path_1 = require("path");
-const Telegraf = require("Telegraf");
+const Telegraf = require("telegraf");
 const App_1 = require("./lib/App");
 const log = require("fancy-log");
 log("Booting..");
