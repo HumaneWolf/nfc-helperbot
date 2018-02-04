@@ -1,9 +1,8 @@
-NFC HelperBot
----
+# NFC HelperBot
 
 This is a Telegram Chat bot that is made to assist people at [Nordic FuzzCon](https://nordicfuzzcon.org/) by answering simple questions. You can use this bot by messaging it on Telegram, [@nfchelperbot](https://t.me/nfchelperbot).
 
-The bot will attempt to classify what you are asking using machine learning natural language parsing, and give what it thinks is an appropriate answer is possible.
+The bot will attempt to classify what you are asking using natural language parsing to find how close your input is to a question list, and give what it thinks is an appropriate answer if possible.
 
 ## Use this bot
 

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
-const natural_1 = require("natural");
 const path_1 = require("path");
 const Telegraf = require("Telegraf");
 const App_1 = require("./lib/App");
@@ -10,7 +9,6 @@ log("Booting..");
 const app = App_1.App.getInstance();
 app.loadConfig();
 app.telegram = new Telegraf(app.config.telegramApiKey);
-app.classifier = new natural_1.BayesClassifier();
 // Train the classifier
 const questionFiles = fs_1.readdirSync(path_1.join("dist", "data"));
 questionFiles.forEach((file) => {
@@ -18,11 +16,8 @@ questionFiles.forEach((file) => {
     const dataName = file.split(".")[0];
     const dataClass = new dataFile[dataName]();
     app.questions.set(dataClass.keyword, dataClass);
-    dataClass.train();
     log(`Data loaded: ${dataName}`);
 });
-app.classifier.train();
-log("Training done.");
 // Load Commands
 fs_1.readdir(path_1.join("dist", "commands"), (error, files) => {
     if (error) {
@@ -51,4 +46,5 @@ fs_1.readdir(path_1.join("dist", "events"), (error, files) => {
         log(`Eventhandler loaded: ${eventName}`);
     });
 });
+log("Starting polling.");
 app.telegram.startPolling();

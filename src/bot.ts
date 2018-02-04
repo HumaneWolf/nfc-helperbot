@@ -1,5 +1,4 @@
 import { readdir, readdirSync } from "fs";
-import { BayesClassifier } from "natural";
 import { join } from "path";
 import * as Telegraf from "Telegraf";
 import { App } from "./lib/App";
@@ -12,7 +11,6 @@ const app: App = App.getInstance();
 app.loadConfig();
 
 app.telegram = new Telegraf(app.config.telegramApiKey);
-app.classifier = new BayesClassifier();
 
 // Train the classifier
 const questionFiles = readdirSync(join("dist", "data"));
@@ -23,12 +21,8 @@ questionFiles.forEach((file) => {
     const dataClass = new dataFile[dataName]();
     app.questions.set(dataClass.keyword, dataClass);
 
-    dataClass.train();
-
     log(`Data loaded: ${dataName}`);
 });
-app.classifier.train();
-log("Training done.");
 
 // Load Commands
 readdir(join("dist", "commands"), (error, files) => {
@@ -42,7 +36,6 @@ readdir(join("dist", "commands"), (error, files) => {
         const cmdFileName = file.split(".")[0];
 
         const cmdClass = new cmdFile[cmdFileName]();
-
         app.telegram.command(cmdClass.aliases, cmdClass.execute);
 
         log(`Commandhandler loaded: ${cmdFileName}`);
@@ -67,5 +60,7 @@ readdir(join("dist", "events"), (error, files) => {
         log(`Eventhandler loaded: ${eventName}`);
     });
 });
+
+log("Starting polling.");
 
 app.telegram.startPolling();

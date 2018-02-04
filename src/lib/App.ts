@@ -1,6 +1,6 @@
 import { resolve } from "path";
 
-import { BayesClassifier } from "natural";
+import { JaroWinklerDistance } from "natural";
 import { Telegraf } from "Telegraf";
 
 import { Question } from "./Question";
@@ -16,8 +16,6 @@ export class App {
     // Class vars.
     public config;
     public questions: Map<string, Question>;
-
-    public classifier: BayesClassifier;
     public telegram: Telegraf;
 
     // Constructor
@@ -34,14 +32,28 @@ export class App {
         this.config = require(`${resolve(".")}/config/config.json`);
     }
 
-    // As question
-    public ask(question: string): string {
-        try {
-            // console.log(this.classifier.getClassifications(question));
+    // Ask question
+    public ask(input: string): string {
+        let highestScore = 0;
+        let highestKeyword = "";
 
-            const keyword = this.classifier.classify(question);
-            const q = this.questions.get(keyword);
-            return q.answer;
+        this.questions.forEach((question) => {
+            question.questions.forEach((text) => {
+                const distance = JaroWinklerDistance(text, input);
+                if (distance > highestScore) {
+                    highestScore = distance;
+                    highestKeyword = question.keyword;
+                }
+            });
+        });
+
+        try {
+            if (highestScore >= 0.7) {
+                return this.questions.get(highestKeyword).answer +
+                    ` (${Math.round(highestScore * 1000) / 1000} likeness)`;
+            } else {
+                return "I am not sure what you are asking.";
+            }
         } catch (ex) {
             return "I am not sure what you are asking.";
         }
