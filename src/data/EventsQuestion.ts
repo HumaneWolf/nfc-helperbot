@@ -6,7 +6,7 @@ export class EventsQuestion implements Question {
         "Haunted House, Charity Concert, Fursuit Huning, Achievement Hunting, karaoke, fursuit games," +
         "fursuit parade, fursuit zoo, afternoon waffles, international snack exchange, Furries Got Talent," +
         "drawing corner, dealers den, and much more.\n" +
-        "Info: https://www.nordicfuzzcon.org/Program/Events";
+        "Schedule: https://www.nordicfuzzcon.org/Program/Schedule";
 
     public keyword: string = "events_list";
 
@@ -15,5 +15,9 @@ export class EventsQuestion implements Question {
         "What is happening?",
         "What events are there?",
         "What can I do?",
+        "Where is the schedule?",
+        "Where is the schedule for NFC?",
+        "What is the schedule?",
+        "What is the schedule for NFC?",
     ];
 }
