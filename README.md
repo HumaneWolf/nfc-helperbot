@@ -6,7 +6,8 @@ The bot will attempt to find out what you are asking using natural language pars
 
 ## Use this bot
 
-You can use this bot by messaging it on Telegram, [@nfchelperbot](https://t.me/nfchelperbot).
+~~You can use this bot by messaging it on Telegram, [@nfchelperbot](https://t.me/nfchelperbot).~~  
+You can set this bot up yourself and message it on Telegram.
 
 ## Contribute
 
